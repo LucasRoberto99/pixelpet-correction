@@ -1,18 +1,22 @@
+// app/play.js
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-
-/* Cette page a besoin de la fonction playWithPet et du state energy pour fonctionner */
+import { usePet } from "./_layout";
 
 export default function PlayScreen() {
-  /* Récupérez la fonction playWithPet et le state energy depuis votre contexte ici */
+  const { playWithPet, energy } = usePet();
 
-  const playGameWithCheck = () => {
-    /* Implémentez la logique pour jouer avec le PixelPet ici */
+  const playGame = () => {
+    if (energy <= 10) {
+      alert("Votre PixelPet est trop fatigué pour jouer !");
+      return;
+    }
+    playWithPet();
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Jouer avec votre PixelPet</Text>
-      <TouchableOpacity style={styles.button} onPress={playGameWithCheck}>
+      <TouchableOpacity style={styles.button} onPress={playGame}>
         <Text style={styles.buttonText}>Lancer la balle</Text>
       </TouchableOpacity>
     </View>

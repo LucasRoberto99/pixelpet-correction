@@ -1,15 +1,25 @@
+// app/index.js
 import { View, Text, StyleSheet } from "react-native";
-
-/* Cette page a besoin des states hunger, happiness et energy pour fonctionner */
+import { usePet } from "./_layout";
 
 export default function Home() {
-  /* Récupérez les states depuis votre contexte ici */
+  const { hunger, happiness, energy } = usePet();
+
+  const getPetStatus = () => {
+    if (energy < 30 || hunger > 70) {
+      return "Votre PixelPet est fatigué ou a faim.";
+    } else {
+      return "Votre PixelPet se sent bien !";
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PixelPet</Text>
-      {/* Affichez les stats du PixelPet ici */}
-      <Text style={styles.status}>?</Text>
+      <Text style={styles.stat}>Faim : {hunger}</Text>
+      <Text style={styles.stat}>Bonheur : {happiness}</Text>
+      <Text style={styles.stat}>Énergie : {energy}</Text>
+      <Text style={styles.status}>{getPetStatus()}</Text>
     </View>
   );
 }
@@ -25,6 +35,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+  },
+  stat: {
+    fontSize: 18,
+    marginBottom: 10,
   },
   status: {
     fontSize: 16,

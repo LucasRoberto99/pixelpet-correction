@@ -1,12 +1,16 @@
+// app/sleep.js
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-
-/* Cette page a besoin de la fonction putPetToSleep et du state energy pour fonctionner */
+import { usePet } from "./_layout";
 
 export default function SleepScreen() {
-  /* Récupérez la fonction putPetToSleep et le state energy depuis votre contexte ici */
+  const { putPetToSleep, energy } = usePet();
 
   const putPetToSleepWithCheck = () => {
-    /* Implémentez la logique pour faire dormir le PixelPet ici */
+    if (energy >= 90) {
+      alert("Votre PixelPet n'est pas fatigué !");
+      return;
+    }
+    putPetToSleep();
   };
 
   return (
