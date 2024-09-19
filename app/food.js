@@ -1,16 +1,12 @@
-// app/food.js
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { usePet } from "./_layout";
+
+/* Cette page a besoin de la fonction feedPet et du state hunger pour fonctionner */
 
 export default function FoodScreen() {
-  const { feedPet, hunger } = usePet();
+  /* Récupérez la fonction feedPet et le state hunger depuis votre contexte ici */
 
   const feedPetWithCheck = () => {
-    if (hunger <= 20) {
-      alert("Votre PixelPet n'a pas faim !");
-      return;
-    }
-    feedPet();
+    /* Implémentez la logique pour nourrir le PixelPet ici */
   };
 
   return (
